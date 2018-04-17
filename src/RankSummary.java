@@ -14,6 +14,7 @@ import java.util.TreeSet;
  * 其中考点按输入给出的顺序从1到N编号。
  * 考生的输出须按最终排名的非递减顺序输出，获得相同分数的考生应有相同名次，并按考号的递增顺序输出。
  * Created by 没想法的岁月 on 2018/4/16.
+ * development 分支
  */
 public class RankSummary {
     public static void main(String[] args) {
