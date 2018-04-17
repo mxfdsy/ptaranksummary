@@ -23,9 +23,8 @@ public class RankSummary {
         Student[] stArray = treeSet.toArray(new Student[9]);
         System.out.println("考生的总数为"+ stArray.length);
         for (int i = 0; i < treeSet.size(); i++) {
-            System.out.println("学生考号为 "+ stArray[i].getId()+" 最终排名"+ (i + 1) + " 所在考场"+stArray[i].getLocation()+" 所在考场内排名为"+getRank(stArray[i]));
+            System.out.println("学生考号为 "+ stArray[i].getId()+" 最终排名"+ (i + 1) + " 所在考场"+stArray[i].getLocation()+" 所在考场内排名为"+getRankLocal(stArray[i]));
         }
-
     }
 
     /**
@@ -33,7 +32,7 @@ public class RankSummary {
      * @param student
      * @return  学生在对应考场下的排名信息
      */
-    private static int getRank(Student student) {
+    private static int getRankLocal(Student student) {
         if (student.getLocation() == 1) {
             TreeSet<Student> treeSet1 = new TreeSet<>(new RankComparator());
             imput(1,5,"1234567890001 95,1234567890005 100,1234567890003 95,1234567890002 77,1234567890004 85",treeSet1);
