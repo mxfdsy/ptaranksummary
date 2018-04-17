@@ -50,4 +50,24 @@ public class Student {
                 ", source=" + source +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student student = (Student) o;
+
+        if (location != student.location) return false;
+        if (source != student.source) return false;
+        return id.equals(student.id);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = location;
+        result = 31 * result + id.hashCode();
+        result = 31 * result + source;
+        return result;
+    }
 }

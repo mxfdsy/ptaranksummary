@@ -21,24 +21,62 @@ public class RankSummary {
         imput(1,5,"1234567890001 95,1234567890005 100,1234567890003 95,1234567890002 77,1234567890004 85",treeSet);
         imput(2,4,"1234567890013 65,1234567890011 25,1234567890014 100,1234567890012 85",treeSet);
         Student[] stArray = treeSet.toArray(new Student[9]);
+        System.out.println("考生的总数为"+ stArray.length);
         for (int i = 0; i < treeSet.size(); i++) {
-            System.out.println(stArray[i].getId()+" "+ (i + 1) + " "+stArray[i].getLocation());
+            System.out.println("学生考号为 "+ stArray[i].getId()+" 最终排名"+ (i + 1) + " 所在考场"+stArray[i].getLocation()+" 所在考场内排名为"+getRank(stArray[i]));
         }
 
     }
 
+    /**
+     *
+     * @param student
+     * @return  学生在对应考场下的排名信息
+     */
+    private static int getRank(Student student) {
+        if (student.getLocation() == 1) {
+            TreeSet<Student> treeSet1 = new TreeSet<>(new RankComparator());
+            imput(1,5,"1234567890001 95,1234567890005 100,1234567890003 95,1234567890002 77,1234567890004 85",treeSet1);
+            Student[] stArray1 = treeSet1.toArray(new Student[5]);
+            for (int i = 0; i < treeSet1.size(); i++) {
+                if (stArray1[i].equals(student)) {
+                    return i + 1;
+                }
+            }
+        } else {
+            TreeSet<Student> treeSet2 = new TreeSet<>(new RankComparator());
+            imput(2,4,"1234567890013 65,1234567890011 25,1234567890014 100,1234567890012 85",treeSet2);
+            Student[] stArray2 = treeSet2.toArray(new Student[4]);
+            for (int i = 0; i < treeSet2.size(); i++) {
+                if (stArray2[i].equals(student)) {
+                    return i + 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    /**
+     *
+     * @param n 考场总数
+     * @param k 几行数据信息
+     * @param strings 学生信息
+     * @param treeSet 进行排序用的set集合
+     *  功能：获得一个含有学生信息的treeSet集合
+     */
     private static void imput(int n,int k, String strings,TreeSet<Student> treeSet) {
-//        TreeSet<Student> treeSet = new TreeSet<>(new RankComparator());
         String[] split = strings.split(",");
         for (String st :split
                 ) {
             String[] split1 = st.split(" ");
              treeSet.add(new Student(n, BigInteger.valueOf(Long.parseLong(split1[0])), Integer.parseInt(split1[1])));
         }
-        System.out.println(treeSet);
     }
 }
 
+/**
+ * 排序：考生的输出须按最终排名的非递减顺序输出，获得相同分数的考生应有相同名次，并按考号的递增顺序输出。
+ */
 class RankComparator implements Comparator<Student>{
     @Override
     public int compare(Student o1, Student o2) {
