@@ -1,9 +1,5 @@
 import java.math.BigInteger;
-import java.util.Comparator;
-
-import java.util.Iterator;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * 输入格式：输入的第一行给出一个正整数N（≤100），代表考点总数。随后给出N个考点的成绩，格式为：首先一行给出正整数K（≤300），代表该考点的考生总数；
@@ -14,7 +10,6 @@ import java.util.TreeSet;
  * 其中考点按输入给出的顺序从1到N编号。
  * 考生的输出须按最终排名的非递减顺序输出，获得相同分数的考生应有相同名次，并按考号的递增顺序输出。
  * Created by 没想法的岁月 on 2018/4/16.
- * development 分支
  */
 public class RankSummary {
     public static void main(String[] args) {
@@ -22,6 +17,8 @@ public class RankSummary {
         imput(1,5,"1234567890001 95,1234567890005 100,1234567890003 95,1234567890002 77,1234567890004 85",treeSet);
         imput(2,4,"1234567890013 65,1234567890011 25,1234567890014 100,1234567890012 85",treeSet);
         Student[] stArray = treeSet.toArray(new Student[9]);
+        ArrayList<Student> students = new ArrayList<>();
+
         System.out.println("考生的总数为"+ stArray.length);
         for (int i = 0; i < treeSet.size(); i++) {
             System.out.println("学生考号为 "+ stArray[i].getId()+" 最终排名"+ (i + 1) + " 所在考场"+stArray[i].getLocation()+" 所在考场内排名为"+getRankLocal(stArray[i]));
