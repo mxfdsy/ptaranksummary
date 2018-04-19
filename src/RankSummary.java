@@ -13,6 +13,10 @@ import java.util.*;
  */
 public class RankSummary {
     public static void main(String[] args) {
+        String str1 = "1234567890001 95,1234567890005 100,1234567890003 95,1234567890002 77,1234567890004 85";
+        String str2 = "1234567890013 65,1234567890011 25,1234567890014 100,1234567890012 85";
+        Map<String, TreeSet> map = new TreeMap<>();
+
         TreeSet<Student> treeSet = new TreeSet<>(new RankComparator());
         imput(1,5,"1234567890001 95,1234567890005 100,1234567890003 95,1234567890002 77,1234567890004 85",treeSet);
         imput(2,4,"1234567890013 65,1234567890011 25,1234567890014 100,1234567890012 85",treeSet);
